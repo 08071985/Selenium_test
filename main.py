@@ -12,40 +12,34 @@ options = Options()
 options.binary_location = r'C:\Users\siwar.bouhamed\AppData\Local\Mozilla Firefox\firefox.exe'
 # driver = webdriver.Firefox(executable_path="D:\\geckodriver.exe", options=options)
 
-#driver = webdriver.Chrome()
 driver = webdriver.Chrome(executable_path="D:\\chromedriver.exe")
 
 
 driver.maximize_window()
-driver.get("http://automationpractice.com/index.php")
+driver.get("https://rahulshettyacademy.com/angularpractice/")
 print(driver.title)
 print(driver.current_url)
 
 time.sleep(2)
-
-
-driver.find_element_by_id("search_query_top").send_keys("dress")
-driver.find_element_by_name("submit_search").click()
-
-select=Select(driver.find_element_by_id("selectProductSort"))
-select.select_by_value("price:desc")
-#select.select_by_index(1)
+# driver.find_element_by_name("name").send_keys("Siwar")
+driver.find_element_by_css_selector("input[name='name']").send_keys("Siwar")
 time.sleep(2)
 
-
-# element = driver.find_element_by_class_name("product-container")
-element = driver.find_element(by=By.CLASS_NAME, value="product-container")
-
-actions = ActionChains(driver)
-actions.move_to_element(element).perform()
-time.sleep(2)
-driver.find_element_by_class_name("ajax_add_to_cart_button").click()
-
-element = WebDriverWait(driver, 5).until(
-    EC.visibility_of_element_located((By.XPATH, '//div[@id="layer_cart"]//a[@title="Proceed to checkout"]'))
-)
-
-driver.find_element_by_xpath('//div[@id="layer_cart"]//a[@title="Proceed to checkout"]').click()
+driver.find_element_by_name("email").send_keys("siwar.bouhamed@gmail.com")
 
 time.sleep(2)
+driver.find_element_by_id("exampleInputPassword1").send_keys("azerty")
+
+time.sleep(2)
+driver.find_element_by_id("exampleCheck1").click()
+time.sleep(2)
+driver.find_element_by_id("exampleFormControlSelect1").click()
+time.sleep(2)
+driver.find_element_by_id("inlineRadio2").click()
+time.sleep(2)
+driver.find_element(by=By.NAME, value="bday").send_keys("08/07/1985")
+time.sleep(2)
+driver.find_element_by_xpath("//input[@type='submit']").click()
+time.sleep(2)
+
 driver.close()
